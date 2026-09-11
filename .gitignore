@@ -142,5 +142,12 @@ vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
 .vite/
 
+# KeystoneJS files
+node_modules
+.keystone/
+generated/
+keystone.db
+*.log
 
 admin/
+panel/
