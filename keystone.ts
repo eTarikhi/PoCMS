@@ -37,7 +37,7 @@ export default withAuth(
             const getRandomValues = require('get-random-values')
             function toHex(bytes) { return Array.from(bytes, b => b.toString(16).padStart(2, '0')).join('') }
             const password = toHex(crypto.getRandomValues(new Uint8Array(16)))
-            console.log(`Generated random password: ${password}`)
+          //  console.log(`Generated random password: ${password}`)
 
           // const password = crypto.getRandomValues(new Uint8Array(16)).toHex()
           await sudoContext.db.User.createOne({
