@@ -151,3 +151,4 @@ keystone.db
 
 admin/
 panel/
+.devdbrc

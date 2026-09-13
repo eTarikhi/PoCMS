@@ -1,4 +1,5 @@
-import { PrismaBetterSqlite3 } from '@prisma/adapter-better-sqlite3'
+import 'dotenv/config'
+import { PrismaPg } from '@prisma/adapter-pg'
 // Welcome to Keystone!
 //
 // This file is what Keystone uses as the entry-point to your headless backend
@@ -21,9 +22,10 @@ export default withAuth(
       // we're using sqlite for the fastest startup experience
       //   for more information on what database might be appropriate for you
       //   see https://keystonejs.com/docs/guides/choosing-a-database#title
-      provider: 'sqlite',
+      provider: 'postgresql',
       prismaClientOptions: () => ({
-        adapter: new PrismaBetterSqlite3({ url: 'file:./keystone.db' }),
+        adapter: new PrismaPg({ connectionString: process.env.POSTGRES_URL || 'file:./keystone.db' }),
+        log: ['query'],
       }),
       async onConnect(context) {
         // this creates an initial user if none exist so you can log in for development
@@ -32,7 +34,12 @@ export default withAuth(
           const sudoContext = context.sudo()
           if ((await sudoContext.db.User.count()) !== 0) return
 
-          const password = crypto.getRandomValues(new Uint8Array(16)).toHex()
+            const getRandomValues = require('get-random-values')
+            function toHex(bytes) { return Array.from(bytes, b => b.toString(16).padStart(2, '0')).join('') }
+            const password = toHex(crypto.getRandomValues(new Uint8Array(16)))
+          //  console.log(`Generated random password: ${password}`)
+
+          // const password = crypto.getRandomValues(new Uint8Array(16)).toHex()
           await sudoContext.db.User.createOne({
             data: { name: 'admin', email: 'admin@example.com', password },
           })
