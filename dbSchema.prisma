@@ -1,0 +1,275 @@
+// Prisma schema generated from database.json (portfolio/resume data)
+// Run: npx prisma generate  &&  npx prisma migrate dev --name init
+
+datasource postgresql {
+  provider = "postgresql"
+}
+
+generator client {
+  provider = "prisma-client"
+  output   = "./generated/prisma"
+}
+
+model User {
+  id        String    @id @default(cuid())
+  name      String    @default("")
+  email     String    @unique @default("")
+  password  String
+  posts     Post[]    @relation("Post_author")
+  createdAt DateTime? @default(now())
+}
+
+model Post {
+  id       String  @id @default(cuid())
+  title    String  @default("")
+  content  Json    @default("[{\"type\":\"paragraph\",\"children\":[{\"text\":\"\"}]}]")
+  author   User?   @relation("Post_author", fields: [authorId], references: [id])
+  authorId String? @map("author")
+  tags     Tag[]   @relation("Post_tags")
+
+  @@index([authorId])
+}
+
+model Tag {
+  id    String @id @default(cuid())
+  name  String @default("")
+  posts Post[] @relation("Post_tags")
+}
+
+// ---------------------------------------------------------------------------
+// Root entity — one record per portfolio/profile (header + about combined)
+// ---------------------------------------------------------------------------
+model Profile {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // header
+  sureName        String
+  imageUrl        String?
+  requestCV       String?
+  professionTexts String[]
+
+  // about.experience
+  experienceYears       Int?
+  experienceTitle       String?
+  experienceDescription String? @postgresql.Text
+
+  // about.workPermit
+  workPermitTitle       String?
+  workPermitDescription String? @postgresql.Text
+
+  // about.images / about.interests
+  aboutImages          String[]
+  interestsTitle       String?
+  interestsDescription String? @postgresql.Text
+  interestsAreas       String[]
+
+  // relations
+  skills            Skill[]
+  experiences       Experience[]
+  educations        Education[]
+  certificates      Certificate[]
+  articles          Article[]
+  serviceHirings    ServiceHiring[]
+  serviceItems      ServiceItem[]
+  projectCategories ProjectCategory[]
+  projects          Project[]
+  socialLinks       SocialLink[]
+  personalSkills    PersonalSkill[]
+  freelanceProfiles FreelanceProfile[]
+  contactInfos      ContactInfo[]
+  copyright         Copyright?
+
+  @@map("profiles")
+}
+
+// skills.frontend / skills.backend
+enum SkillCategory {
+  FRONTEND
+  BACKEND
+}
+
+model Skill {
+  id       Int           @id @default(autoincrement())
+  category SkillCategory
+  label    String
+  value    Int
+  color    String
+
+  profileId Int
+  profile   Profile @relation(fields: [profileId], references: [id], onDelete: Cascade)
+
+  @@map("skills")
+}
+
+model Experience {
+  id      Int    @id @default(autoincrement())
+  title   String
+  date    String
+  company String
+
+  profileId Int
+  profile   Profile @relation(fields: [profileId], references: [id], onDelete: Cascade)
+
+  @@map("experiences")
+}
+
+model Education {
+  id       Int    @id @default(autoincrement())
+  title    String
+  date     String
+  location String
+
+  profileId Int
+  profile   Profile @relation(fields: [profileId], references: [id], onDelete: Cascade)
+
+  @@map("educations")
+}
+
+model Certificate {
+  id       Int     @id @default(autoincrement())
+  title    String
+  issuer   String
+  date     String
+  imageUrl String?
+  link     String?
+
+  profileId Int
+  profile   Profile @relation(fields: [profileId], references: [id], onDelete: Cascade)
+
+  @@map("certificates")
+}
+
+model Article {
+  id       Int     @id @default(autoincrement())
+  title    String
+  excerpt  String  @postgresql.Text
+  author   String
+  readTime String
+  imageUrl String?
+  link     String?
+
+  profileId Int
+  profile   Profile @relation(fields: [profileId], references: [id], onDelete: Cascade)
+
+  @@map("articles")
+}
+
+// services.hiring
+model ServiceHiring {
+  id    Int     @id @default(autoincrement())
+  title String
+  link  String?
+
+  profileId Int
+  profile   Profile @relation(fields: [profileId], references: [id], onDelete: Cascade)
+
+  @@map("service_hirings")
+}
+
+// services.items
+model ServiceItem {
+  id           Int      @id @default(autoincrement())
+  category     String
+  iconFont     String?
+  descriptions String[]
+
+  profileId Int
+  profile   Profile @relation(fields: [profileId], references: [id], onDelete: Cascade)
+
+  @@map("service_items")
+}
+
+// projects.categories
+model ProjectCategory {
+  id       Int    @id @default(autoincrement())
+  category String
+  class    String
+
+  profileId Int
+  profile   Profile @relation(fields: [profileId], references: [id], onDelete: Cascade)
+
+  @@map("project_categories")
+}
+
+// projects.items
+model Project {
+  id          Int      @id @default(autoincrement())
+  class       String[]
+  placeHolder String?
+  src         String?
+  alt         String?
+  url         String?
+
+  profileId Int
+  profile   Profile @relation(fields: [profileId], references: [id], onDelete: Cascade)
+
+  @@map("projects")
+}
+
+// footer.socialLinks
+model SocialLink {
+  id        Int     @id @default(autoincrement())
+  name      String
+  url       String
+  iconName  String?
+  ariaLabel String?
+
+  profileId Int
+  profile   Profile @relation(fields: [profileId], references: [id], onDelete: Cascade)
+
+  @@map("social_links")
+}
+
+// footer.personalInfo.skills
+model PersonalSkill {
+  id    Int    @id @default(autoincrement())
+  title String
+
+  profileId Int
+  profile   Profile @relation(fields: [profileId], references: [id], onDelete: Cascade)
+
+  @@map("personal_skills")
+}
+
+// footer.profiles (freelance platform links)
+model FreelanceProfile {
+  id   Int    @id @default(autoincrement())
+  name String
+  url  String
+
+  profileId Int
+  profile   Profile @relation(fields: [profileId], references: [id], onDelete: Cascade)
+
+  @@map("freelance_profiles")
+}
+
+// footer.contactInfo
+model ContactInfo {
+  id        Int     @id @default(autoincrement())
+  type      String
+  iconName  String?
+  content   String
+  url       String?
+  isLink    Boolean @default(false)
+  className String?
+
+  profileId Int
+  profile   Profile @relation(fields: [profileId], references: [id], onDelete: Cascade)
+
+  @@map("contact_infos")
+}
+
+// footer.copyright (one-to-one)
+model Copyright {
+  id      Int     @id @default(autoincrement())
+  year    Int
+  website String
+  url     String?
+
+  profileId Int     @unique
+  profile   Profile @relation(fields: [profileId], references: [id], onDelete: Cascade)
+
+  @@map("copyrights")
+}

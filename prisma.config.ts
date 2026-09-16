@@ -9,7 +9,7 @@ import { defineConfig, env } from 'prisma/config'
 // const prisma = new PrismaClient({ adapter })
 
 export default defineConfig({
-  schema: 'schema.prisma',
+  schema: 'dbSchema.prisma',
   migrations: { path: 'migrations' },
   datasource: {
     url: process.env.POSTGRES_URL || 'file:./keystone.db',
