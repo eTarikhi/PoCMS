@@ -10,7 +10,10 @@ import { defineConfig, env } from 'prisma/config'
 
 export default defineConfig({
   schema: 'dbSchema.prisma',
-  migrations: { path: 'migrations' },
+  migrations: { 
+    path: 'migrations',
+    seed: 'node dbSeed.js'
+   },
   datasource: {
     url: process.env.POSTGRES_URL || 'file:./keystone.db',
     // only necessary if you want to use a specific shadow database
