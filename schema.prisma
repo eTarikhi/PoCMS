@@ -35,3 +35,197 @@ model Tag {
   name  String @default("")
   posts Post[] @relation("Post_tags")
 }
+
+model Profile {
+  id                    String            @id @default(cuid())
+  sureName              String            @default("")
+  imageUrl              String            @default("")
+  requestCV             String            @default("")
+  professionTexts       String            @default("")
+  experienceYears       Int?
+  experienceTitle       String            @default("")
+  experienceDescription String            @default("")
+  workPermitTitle       String            @default("")
+  workPermitDescription String            @default("")
+  aboutImages           String            @default("")
+  interestsTitle        String            @default("")
+  interestsDescription  String            @default("")
+  interestsAreas        String            @default("")
+  skills                Skill[]           @relation("Skill_profile")
+  experiences           Experience[]      @relation("Experience_profile")
+  educations            Education[]       @relation("Education_profile")
+  certificates          Certificate[]     @relation("Certificate_profile")
+  articles              Article[]         @relation("Article_profile")
+  hireMe                HireMe[]          @relation("HireMe_profile")
+  serviceItems          Service[]         @relation("Service_profile")
+  projectCategories     ProjectCategory[] @relation("ProjectCategory_profile")
+  projects              Project[]         @relation("Project_profile")
+  socialLinks           SocialLink[]      @relation("SocialLink_profile")
+  personalInfos         PersonalInfo[]    @relation("PersonalInfo_profile")
+  freelanceLinks        FreelanceLink[]   @relation("FreelanceLink_profile")
+  contactInfos          ContactInfo[]     @relation("ContactInfo_profile")
+  copyright             Copyright?        @relation("Copyright_profile")
+}
+
+model Skill {
+  id        String   @id @default(cuid())
+  category  String
+  label     String   @default("")
+  value     Int?
+  color     String   @default("")
+  profile   Profile? @relation("Skill_profile", fields: [profileId], references: [id])
+  profileId String?  @map("profile")
+
+  @@index([profileId])
+}
+
+model Experience {
+  id        String   @id @default(cuid())
+  title     String   @default("")
+  date      String   @default("")
+  company   String   @default("")
+  profile   Profile? @relation("Experience_profile", fields: [profileId], references: [id])
+  profileId String?  @map("profile")
+
+  @@index([profileId])
+}
+
+model Education {
+  id        String   @id @default(cuid())
+  title     String   @default("")
+  date      String   @default("")
+  location  String   @default("")
+  profile   Profile? @relation("Education_profile", fields: [profileId], references: [id])
+  profileId String?  @map("profile")
+
+  @@index([profileId])
+}
+
+model Certificate {
+  id        String   @id @default(cuid())
+  title     String   @default("")
+  issuer    String   @default("")
+  date      String   @default("")
+  imageUrl  String   @default("")
+  link      String   @default("")
+  profile   Profile? @relation("Certificate_profile", fields: [profileId], references: [id])
+  profileId String?  @map("profile")
+
+  @@index([profileId])
+}
+
+model Article {
+  id          String   @id @default(cuid())
+  title       String   @default("")
+  excerpt     String   @default("")
+  description String   @default("")
+  author      String   @default("")
+  readTime    String   @default("")
+  imageUrl    String   @default("")
+  link        String   @default("")
+  profile     Profile? @relation("Article_profile", fields: [profileId], references: [id])
+  profileId   String?  @map("profile")
+
+  @@index([profileId])
+}
+
+model HireMe {
+  id        String   @id @default(cuid())
+  title     String   @default("")
+  link      String   @default("")
+  profile   Profile? @relation("HireMe_profile", fields: [profileId], references: [id])
+  profileId String?  @map("profile")
+
+  @@index([profileId])
+}
+
+model Service {
+  id           String   @id @default(cuid())
+  category     String   @default("")
+  iconFont     String   @default("")
+  descriptions String   @default("")
+  profile      Profile? @relation("Service_profile", fields: [profileId], references: [id])
+  profileId    String?  @map("profile")
+
+  @@index([profileId])
+}
+
+model ProjectCategory {
+  id        String    @id @default(cuid())
+  category  String    @default("")
+  class     String    @default("")
+  project   Project[] @relation("Project_class")
+  profile   Profile?  @relation("ProjectCategory_profile", fields: [profileId], references: [id])
+  profileId String?   @map("profile")
+
+  @@index([profileId])
+}
+
+model Project {
+  id          String           @id @default(cuid())
+  class       ProjectCategory? @relation("Project_class", fields: [classId], references: [id])
+  classId     String?          @map("class")
+  placeHolder String           @default("")
+  src         String           @default("")
+  alt         String           @default("")
+  url         String           @default("")
+  profile     Profile?         @relation("Project_profile", fields: [profileId], references: [id])
+  profileId   String?          @map("profile")
+
+  @@index([classId])
+  @@index([profileId])
+}
+
+model SocialLink {
+  id        String   @id @default(cuid())
+  name      String   @default("")
+  url       String   @default("")
+  iconName  String   @default("")
+  ariaLabel String   @default("")
+  profile   Profile? @relation("SocialLink_profile", fields: [profileId], references: [id])
+  profileId String?  @map("profile")
+
+  @@index([profileId])
+}
+
+model PersonalInfo {
+  id        String   @id @default(cuid())
+  title     String   @default("")
+  profile   Profile? @relation("PersonalInfo_profile", fields: [profileId], references: [id])
+  profileId String?  @map("profile")
+
+  @@index([profileId])
+}
+
+model FreelanceLink {
+  id        String   @id @default(cuid())
+  name      String   @default("")
+  url       String   @default("")
+  profile   Profile? @relation("FreelanceLink_profile", fields: [profileId], references: [id])
+  profileId String?  @map("profile")
+
+  @@index([profileId])
+}
+
+model ContactInfo {
+  id        String   @id @default(cuid())
+  type      String   @default("")
+  iconName  String   @default("")
+  content   String   @default("")
+  url       String   @default("")
+  isLink    Boolean  @default(false)
+  className String   @default("")
+  profile   Profile? @relation("ContactInfo_profile", fields: [profileId], references: [id])
+  profileId String?  @map("profile")
+
+  @@index([profileId])
+}
+
+model Copyright {
+  id        String   @id @default(cuid())
+  year      Int
+  website   String   @default("")
+  url       String   @default("")
+  profile   Profile? @relation("Copyright_profile", fields: [profileId], references: [id])
+  profileId String?  @unique @map("profile")
+}

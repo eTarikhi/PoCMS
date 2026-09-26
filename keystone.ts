@@ -30,13 +30,13 @@ export default withAuth(
       async onConnect(context) {
         // this creates an initial user if none exist so you can log in for development
         // WARNING: do not use this in production
-        ;(async () => {
+        ; (async () => {
           const sudoContext = context.sudo()
           if ((await sudoContext.db.User.count()) !== 0) return
 
-            const getRandomValues = require('get-random-values')
-            function toHex(bytes) { return Array.from(bytes, b => b.toString(16).padStart(2, '0')).join('') }
-            const password = toHex(crypto.getRandomValues(new Uint8Array(16)))
+          const getRandomValues = require('get-random-values')
+          function toHex(bytes) { return Array.from(bytes, b => b.toString(16).padStart(2, '0')).join('') }
+          const password = toHex(crypto.getRandomValues(new Uint8Array(16)))
           //  console.log(`Generated random password: ${password}`)
 
           // const password = crypto.getRandomValues(new Uint8Array(16)).toHex()
@@ -66,5 +66,39 @@ export default withAuth(
     },
     lists,
     session,
+    ui: {
+      pageMenu: [
+        {
+          label: 'Dashboard',
+          path: '/dashboard',
+        },
+        {
+          label: 'Portfolio',
+          path: '#',
+        },
+        {
+          children: [
+            { label: 'Profiles', path: '/profiles' },
+            { label: 'Skills', path: '/skills' },
+            { label: 'Experiences', path: '/experiences' },
+            { label: 'Educations', path: '/educations' },
+            { label: 'Certificates', path: '/certificates' },
+            { label: 'Articles', path: '/articles' },
+
+            { label: 'Hire Me', path: '/hire-me' },
+            { label: 'Services', path: '/services' },
+
+            { label: 'Project Categories', path: '/project-categories' },
+            { label: 'Projects', path: '/projects' },
+
+            { label: 'Personal Infos', path: '/personal-infos' },
+            { label: 'Social Links', path: '/social-links' },
+            { label: 'Freelance Links', path: '/freelance-links' },
+            { label: 'Contact Infos', path: '/contact-infos' },
+            { label: 'Copyright', path: '/copyright' },
+          ],
+        },
+      ],
+    },
   })
 )

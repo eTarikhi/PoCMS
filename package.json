@@ -3,7 +3,7 @@
   "version": "1.0.3",
   "private": true,
   "scripts": {
-    "dev": "keystone dev --no-db-push",
+    "dev": "keystone dev",
     "start": "keystone start",
     "build": "keystone build --output public",
     "postinstall": "keystone postinstall",

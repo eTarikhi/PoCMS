@@ -262,6 +262,1209 @@ input TagCreateInput {
   posts: PostRelateToManyForCreateInput
 }
 
+type Profile {
+  id: ID!
+  sureName: String
+  imageUrl: String
+  requestCV: String
+  professionTexts: String
+  experienceYears: Int
+  experienceTitle: String
+  experienceDescription: String
+  workPermitTitle: String
+  workPermitDescription: String
+  aboutImages: String
+  interestsTitle: String
+  interestsDescription: String
+  interestsAreas: String
+  skills(where: SkillWhereInput! = {}, orderBy: [SkillOrderByInput!]! = [], take: Int, skip: Int! = 0, cursor: SkillWhereUniqueInput): [Skill!]
+  skillsCount(where: SkillWhereInput! = {}): Int
+  experiences(where: ExperienceWhereInput! = {}, orderBy: [ExperienceOrderByInput!]! = [], take: Int, skip: Int! = 0, cursor: ExperienceWhereUniqueInput): [Experience!]
+  experiencesCount(where: ExperienceWhereInput! = {}): Int
+  educations(where: EducationWhereInput! = {}, orderBy: [EducationOrderByInput!]! = [], take: Int, skip: Int! = 0, cursor: EducationWhereUniqueInput): [Education!]
+  educationsCount(where: EducationWhereInput! = {}): Int
+  certificates(where: CertificateWhereInput! = {}, orderBy: [CertificateOrderByInput!]! = [], take: Int, skip: Int! = 0, cursor: CertificateWhereUniqueInput): [Certificate!]
+  certificatesCount(where: CertificateWhereInput! = {}): Int
+  articles(where: ArticleWhereInput! = {}, orderBy: [ArticleOrderByInput!]! = [], take: Int, skip: Int! = 0, cursor: ArticleWhereUniqueInput): [Article!]
+  articlesCount(where: ArticleWhereInput! = {}): Int
+  hireMe(where: HireMeWhereInput! = {}, orderBy: [HireMeOrderByInput!]! = [], take: Int, skip: Int! = 0, cursor: HireMeWhereUniqueInput): [HireMe!]
+  hireMeCount(where: HireMeWhereInput! = {}): Int
+  serviceItems(where: ServiceWhereInput! = {}, orderBy: [ServiceOrderByInput!]! = [], take: Int, skip: Int! = 0, cursor: ServiceWhereUniqueInput): [Service!]
+  serviceItemsCount(where: ServiceWhereInput! = {}): Int
+  projectCategories(where: ProjectCategoryWhereInput! = {}, orderBy: [ProjectCategoryOrderByInput!]! = [], take: Int, skip: Int! = 0, cursor: ProjectCategoryWhereUniqueInput): [ProjectCategory!]
+  projectCategoriesCount(where: ProjectCategoryWhereInput! = {}): Int
+  projects(where: ProjectWhereInput! = {}, orderBy: [ProjectOrderByInput!]! = [], take: Int, skip: Int! = 0, cursor: ProjectWhereUniqueInput): [Project!]
+  projectsCount(where: ProjectWhereInput! = {}): Int
+  socialLinks(where: SocialLinkWhereInput! = {}, orderBy: [SocialLinkOrderByInput!]! = [], take: Int, skip: Int! = 0, cursor: SocialLinkWhereUniqueInput): [SocialLink!]
+  socialLinksCount(where: SocialLinkWhereInput! = {}): Int
+  personalInfos(where: PersonalInfoWhereInput! = {}, orderBy: [PersonalInfoOrderByInput!]! = [], take: Int, skip: Int! = 0, cursor: PersonalInfoWhereUniqueInput): [PersonalInfo!]
+  personalInfosCount(where: PersonalInfoWhereInput! = {}): Int
+  freelanceLinks(where: FreelanceLinkWhereInput! = {}, orderBy: [FreelanceLinkOrderByInput!]! = [], take: Int, skip: Int! = 0, cursor: FreelanceLinkWhereUniqueInput): [FreelanceLink!]
+  freelanceLinksCount(where: FreelanceLinkWhereInput! = {}): Int
+  contactInfos(where: ContactInfoWhereInput! = {}, orderBy: [ContactInfoOrderByInput!]! = [], take: Int, skip: Int! = 0, cursor: ContactInfoWhereUniqueInput): [ContactInfo!]
+  contactInfosCount(where: ContactInfoWhereInput! = {}): Int
+  copyright: Copyright
+}
+
+input ProfileWhereUniqueInput {
+  id: ID
+  copyright: CopyrightWhereUniqueInput
+}
+
+input ProfileWhereInput {
+  AND: [ProfileWhereInput!]
+  OR: [ProfileWhereInput!]
+  NOT: [ProfileWhereInput!]
+  id: IDFilter
+  sureName: StringFilter
+  imageUrl: StringFilter
+  requestCV: StringFilter
+  professionTexts: StringFilter
+  experienceYears: IntNullableFilter
+  experienceTitle: StringFilter
+  experienceDescription: StringFilter
+  workPermitTitle: StringFilter
+  workPermitDescription: StringFilter
+  aboutImages: StringFilter
+  interestsTitle: StringFilter
+  interestsDescription: StringFilter
+  interestsAreas: StringFilter
+  skills: SkillManyRelationFilter
+  experiences: ExperienceManyRelationFilter
+  educations: EducationManyRelationFilter
+  certificates: CertificateManyRelationFilter
+  articles: ArticleManyRelationFilter
+  hireMe: HireMeManyRelationFilter
+  serviceItems: ServiceManyRelationFilter
+  projectCategories: ProjectCategoryManyRelationFilter
+  projects: ProjectManyRelationFilter
+  socialLinks: SocialLinkManyRelationFilter
+  personalInfos: PersonalInfoManyRelationFilter
+  freelanceLinks: FreelanceLinkManyRelationFilter
+  contactInfos: ContactInfoManyRelationFilter
+  copyright: CopyrightWhereInput
+}
+
+input IntNullableFilter {
+  equals: Int
+  in: [Int!]
+  notIn: [Int!]
+  lt: Int
+  lte: Int
+  gt: Int
+  gte: Int
+  not: IntNullableFilter
+}
+
+input SkillManyRelationFilter {
+  every: SkillWhereInput
+  some: SkillWhereInput
+  none: SkillWhereInput
+}
+
+input ExperienceManyRelationFilter {
+  every: ExperienceWhereInput
+  some: ExperienceWhereInput
+  none: ExperienceWhereInput
+}
+
+input EducationManyRelationFilter {
+  every: EducationWhereInput
+  some: EducationWhereInput
+  none: EducationWhereInput
+}
+
+input CertificateManyRelationFilter {
+  every: CertificateWhereInput
+  some: CertificateWhereInput
+  none: CertificateWhereInput
+}
+
+input ArticleManyRelationFilter {
+  every: ArticleWhereInput
+  some: ArticleWhereInput
+  none: ArticleWhereInput
+}
+
+input HireMeManyRelationFilter {
+  every: HireMeWhereInput
+  some: HireMeWhereInput
+  none: HireMeWhereInput
+}
+
+input ServiceManyRelationFilter {
+  every: ServiceWhereInput
+  some: ServiceWhereInput
+  none: ServiceWhereInput
+}
+
+input ProjectCategoryManyRelationFilter {
+  every: ProjectCategoryWhereInput
+  some: ProjectCategoryWhereInput
+  none: ProjectCategoryWhereInput
+}
+
+input ProjectManyRelationFilter {
+  every: ProjectWhereInput
+  some: ProjectWhereInput
+  none: ProjectWhereInput
+}
+
+input SocialLinkManyRelationFilter {
+  every: SocialLinkWhereInput
+  some: SocialLinkWhereInput
+  none: SocialLinkWhereInput
+}
+
+input PersonalInfoManyRelationFilter {
+  every: PersonalInfoWhereInput
+  some: PersonalInfoWhereInput
+  none: PersonalInfoWhereInput
+}
+
+input FreelanceLinkManyRelationFilter {
+  every: FreelanceLinkWhereInput
+  some: FreelanceLinkWhereInput
+  none: FreelanceLinkWhereInput
+}
+
+input ContactInfoManyRelationFilter {
+  every: ContactInfoWhereInput
+  some: ContactInfoWhereInput
+  none: ContactInfoWhereInput
+}
+
+input ProfileOrderByInput {
+  id: OrderDirection
+  sureName: OrderDirection
+  imageUrl: OrderDirection
+  requestCV: OrderDirection
+  professionTexts: OrderDirection
+  experienceYears: OrderDirection
+  experienceTitle: OrderDirection
+  experienceDescription: OrderDirection
+  workPermitTitle: OrderDirection
+  workPermitDescription: OrderDirection
+  aboutImages: OrderDirection
+  interestsTitle: OrderDirection
+  interestsDescription: OrderDirection
+  interestsAreas: OrderDirection
+}
+
+input ProfileUpdateInput {
+  sureName: String
+  imageUrl: String
+  requestCV: String
+  professionTexts: String
+  experienceYears: Int
+  experienceTitle: String
+  experienceDescription: String
+  workPermitTitle: String
+  workPermitDescription: String
+  aboutImages: String
+  interestsTitle: String
+  interestsDescription: String
+  interestsAreas: String
+  skills: SkillRelateToManyForUpdateInput
+  experiences: ExperienceRelateToManyForUpdateInput
+  educations: EducationRelateToManyForUpdateInput
+  certificates: CertificateRelateToManyForUpdateInput
+  articles: ArticleRelateToManyForUpdateInput
+  hireMe: HireMeRelateToManyForUpdateInput
+  serviceItems: ServiceRelateToManyForUpdateInput
+  projectCategories: ProjectCategoryRelateToManyForUpdateInput
+  projects: ProjectRelateToManyForUpdateInput
+  socialLinks: SocialLinkRelateToManyForUpdateInput
+  personalInfos: PersonalInfoRelateToManyForUpdateInput
+  freelanceLinks: FreelanceLinkRelateToManyForUpdateInput
+  contactInfos: ContactInfoRelateToManyForUpdateInput
+  copyright: CopyrightRelateToOneForUpdateInput
+}
+
+input SkillRelateToManyForUpdateInput {
+  disconnect: [SkillWhereUniqueInput!]
+  set: [SkillWhereUniqueInput!]
+  create: [SkillCreateInput!]
+  connect: [SkillWhereUniqueInput!]
+}
+
+input ExperienceRelateToManyForUpdateInput {
+  disconnect: [ExperienceWhereUniqueInput!]
+  set: [ExperienceWhereUniqueInput!]
+  create: [ExperienceCreateInput!]
+  connect: [ExperienceWhereUniqueInput!]
+}
+
+input EducationRelateToManyForUpdateInput {
+  disconnect: [EducationWhereUniqueInput!]
+  set: [EducationWhereUniqueInput!]
+  create: [EducationCreateInput!]
+  connect: [EducationWhereUniqueInput!]
+}
+
+input CertificateRelateToManyForUpdateInput {
+  disconnect: [CertificateWhereUniqueInput!]
+  set: [CertificateWhereUniqueInput!]
+  create: [CertificateCreateInput!]
+  connect: [CertificateWhereUniqueInput!]
+}
+
+input ArticleRelateToManyForUpdateInput {
+  disconnect: [ArticleWhereUniqueInput!]
+  set: [ArticleWhereUniqueInput!]
+  create: [ArticleCreateInput!]
+  connect: [ArticleWhereUniqueInput!]
+}
+
+input HireMeRelateToManyForUpdateInput {
+  disconnect: [HireMeWhereUniqueInput!]
+  set: [HireMeWhereUniqueInput!]
+  create: [HireMeCreateInput!]
+  connect: [HireMeWhereUniqueInput!]
+}
+
+input ServiceRelateToManyForUpdateInput {
+  disconnect: [ServiceWhereUniqueInput!]
+  set: [ServiceWhereUniqueInput!]
+  create: [ServiceCreateInput!]
+  connect: [ServiceWhereUniqueInput!]
+}
+
+input ProjectCategoryRelateToManyForUpdateInput {
+  disconnect: [ProjectCategoryWhereUniqueInput!]
+  set: [ProjectCategoryWhereUniqueInput!]
+  create: [ProjectCategoryCreateInput!]
+  connect: [ProjectCategoryWhereUniqueInput!]
+}
+
+input ProjectRelateToManyForUpdateInput {
+  disconnect: [ProjectWhereUniqueInput!]
+  set: [ProjectWhereUniqueInput!]
+  create: [ProjectCreateInput!]
+  connect: [ProjectWhereUniqueInput!]
+}
+
+input SocialLinkRelateToManyForUpdateInput {
+  disconnect: [SocialLinkWhereUniqueInput!]
+  set: [SocialLinkWhereUniqueInput!]
+  create: [SocialLinkCreateInput!]
+  connect: [SocialLinkWhereUniqueInput!]
+}
+
+input PersonalInfoRelateToManyForUpdateInput {
+  disconnect: [PersonalInfoWhereUniqueInput!]
+  set: [PersonalInfoWhereUniqueInput!]
+  create: [PersonalInfoCreateInput!]
+  connect: [PersonalInfoWhereUniqueInput!]
+}
+
+input FreelanceLinkRelateToManyForUpdateInput {
+  disconnect: [FreelanceLinkWhereUniqueInput!]
+  set: [FreelanceLinkWhereUniqueInput!]
+  create: [FreelanceLinkCreateInput!]
+  connect: [FreelanceLinkWhereUniqueInput!]
+}
+
+input ContactInfoRelateToManyForUpdateInput {
+  disconnect: [ContactInfoWhereUniqueInput!]
+  set: [ContactInfoWhereUniqueInput!]
+  create: [ContactInfoCreateInput!]
+  connect: [ContactInfoWhereUniqueInput!]
+}
+
+input CopyrightRelateToOneForUpdateInput {
+  create: CopyrightCreateInput
+  connect: CopyrightWhereUniqueInput
+  disconnect: Boolean
+}
+
+input ProfileUpdateArgs {
+  where: ProfileWhereUniqueInput!
+  data: ProfileUpdateInput!
+}
+
+input ProfileCreateInput {
+  sureName: String
+  imageUrl: String
+  requestCV: String
+  professionTexts: String
+  experienceYears: Int
+  experienceTitle: String
+  experienceDescription: String
+  workPermitTitle: String
+  workPermitDescription: String
+  aboutImages: String
+  interestsTitle: String
+  interestsDescription: String
+  interestsAreas: String
+  skills: SkillRelateToManyForCreateInput
+  experiences: ExperienceRelateToManyForCreateInput
+  educations: EducationRelateToManyForCreateInput
+  certificates: CertificateRelateToManyForCreateInput
+  articles: ArticleRelateToManyForCreateInput
+  hireMe: HireMeRelateToManyForCreateInput
+  serviceItems: ServiceRelateToManyForCreateInput
+  projectCategories: ProjectCategoryRelateToManyForCreateInput
+  projects: ProjectRelateToManyForCreateInput
+  socialLinks: SocialLinkRelateToManyForCreateInput
+  personalInfos: PersonalInfoRelateToManyForCreateInput
+  freelanceLinks: FreelanceLinkRelateToManyForCreateInput
+  contactInfos: ContactInfoRelateToManyForCreateInput
+  copyright: CopyrightRelateToOneForCreateInput
+}
+
+input SkillRelateToManyForCreateInput {
+  create: [SkillCreateInput!]
+  connect: [SkillWhereUniqueInput!]
+  set: [SkillWhereUniqueInput!]
+}
+
+input ExperienceRelateToManyForCreateInput {
+  create: [ExperienceCreateInput!]
+  connect: [ExperienceWhereUniqueInput!]
+  set: [ExperienceWhereUniqueInput!]
+}
+
+input EducationRelateToManyForCreateInput {
+  create: [EducationCreateInput!]
+  connect: [EducationWhereUniqueInput!]
+  set: [EducationWhereUniqueInput!]
+}
+
+input CertificateRelateToManyForCreateInput {
+  create: [CertificateCreateInput!]
+  connect: [CertificateWhereUniqueInput!]
+  set: [CertificateWhereUniqueInput!]
+}
+
+input ArticleRelateToManyForCreateInput {
+  create: [ArticleCreateInput!]
+  connect: [ArticleWhereUniqueInput!]
+  set: [ArticleWhereUniqueInput!]
+}
+
+input HireMeRelateToManyForCreateInput {
+  create: [HireMeCreateInput!]
+  connect: [HireMeWhereUniqueInput!]
+  set: [HireMeWhereUniqueInput!]
+}
+
+input ServiceRelateToManyForCreateInput {
+  create: [ServiceCreateInput!]
+  connect: [ServiceWhereUniqueInput!]
+  set: [ServiceWhereUniqueInput!]
+}
+
+input ProjectCategoryRelateToManyForCreateInput {
+  create: [ProjectCategoryCreateInput!]
+  connect: [ProjectCategoryWhereUniqueInput!]
+  set: [ProjectCategoryWhereUniqueInput!]
+}
+
+input ProjectRelateToManyForCreateInput {
+  create: [ProjectCreateInput!]
+  connect: [ProjectWhereUniqueInput!]
+  set: [ProjectWhereUniqueInput!]
+}
+
+input SocialLinkRelateToManyForCreateInput {
+  create: [SocialLinkCreateInput!]
+  connect: [SocialLinkWhereUniqueInput!]
+  set: [SocialLinkWhereUniqueInput!]
+}
+
+input PersonalInfoRelateToManyForCreateInput {
+  create: [PersonalInfoCreateInput!]
+  connect: [PersonalInfoWhereUniqueInput!]
+  set: [PersonalInfoWhereUniqueInput!]
+}
+
+input FreelanceLinkRelateToManyForCreateInput {
+  create: [FreelanceLinkCreateInput!]
+  connect: [FreelanceLinkWhereUniqueInput!]
+  set: [FreelanceLinkWhereUniqueInput!]
+}
+
+input ContactInfoRelateToManyForCreateInput {
+  create: [ContactInfoCreateInput!]
+  connect: [ContactInfoWhereUniqueInput!]
+  set: [ContactInfoWhereUniqueInput!]
+}
+
+input CopyrightRelateToOneForCreateInput {
+  create: CopyrightCreateInput
+  connect: CopyrightWhereUniqueInput
+}
+
+type Skill {
+  id: ID!
+  category: String
+  label: String
+  value: Int
+  color: String
+  profile: Profile
+}
+
+input SkillWhereUniqueInput {
+  id: ID
+}
+
+input SkillWhereInput {
+  AND: [SkillWhereInput!]
+  OR: [SkillWhereInput!]
+  NOT: [SkillWhereInput!]
+  id: IDFilter
+  category: StringFilter
+  label: StringFilter
+  value: IntNullableFilter
+  color: StringFilter
+  profile: ProfileWhereInput
+}
+
+input SkillOrderByInput {
+  id: OrderDirection
+  category: OrderDirection
+  label: OrderDirection
+  value: OrderDirection
+  color: OrderDirection
+}
+
+input SkillUpdateInput {
+  category: String
+  label: String
+  value: Int
+  color: String
+  profile: ProfileRelateToOneForUpdateInput
+}
+
+input ProfileRelateToOneForUpdateInput {
+  create: ProfileCreateInput
+  connect: ProfileWhereUniqueInput
+  disconnect: Boolean
+}
+
+input SkillUpdateArgs {
+  where: SkillWhereUniqueInput!
+  data: SkillUpdateInput!
+}
+
+input SkillCreateInput {
+  category: String
+  label: String
+  value: Int
+  color: String
+  profile: ProfileRelateToOneForCreateInput
+}
+
+input ProfileRelateToOneForCreateInput {
+  create: ProfileCreateInput
+  connect: ProfileWhereUniqueInput
+}
+
+type Experience {
+  id: ID!
+  title: String
+  date: String
+  company: String
+  profile: Profile
+}
+
+input ExperienceWhereUniqueInput {
+  id: ID
+}
+
+input ExperienceWhereInput {
+  AND: [ExperienceWhereInput!]
+  OR: [ExperienceWhereInput!]
+  NOT: [ExperienceWhereInput!]
+  id: IDFilter
+  title: StringFilter
+  date: StringFilter
+  company: StringFilter
+  profile: ProfileWhereInput
+}
+
+input ExperienceOrderByInput {
+  id: OrderDirection
+  title: OrderDirection
+  date: OrderDirection
+  company: OrderDirection
+}
+
+input ExperienceUpdateInput {
+  title: String
+  date: String
+  company: String
+  profile: ProfileRelateToOneForUpdateInput
+}
+
+input ExperienceUpdateArgs {
+  where: ExperienceWhereUniqueInput!
+  data: ExperienceUpdateInput!
+}
+
+input ExperienceCreateInput {
+  title: String
+  date: String
+  company: String
+  profile: ProfileRelateToOneForCreateInput
+}
+
+type Education {
+  id: ID!
+  title: String
+  date: String
+  location: String
+  profile: Profile
+}
+
+input EducationWhereUniqueInput {
+  id: ID
+}
+
+input EducationWhereInput {
+  AND: [EducationWhereInput!]
+  OR: [EducationWhereInput!]
+  NOT: [EducationWhereInput!]
+  id: IDFilter
+  title: StringFilter
+  date: StringFilter
+  location: StringFilter
+  profile: ProfileWhereInput
+}
+
+input EducationOrderByInput {
+  id: OrderDirection
+  title: OrderDirection
+  date: OrderDirection
+  location: OrderDirection
+}
+
+input EducationUpdateInput {
+  title: String
+  date: String
+  location: String
+  profile: ProfileRelateToOneForUpdateInput
+}
+
+input EducationUpdateArgs {
+  where: EducationWhereUniqueInput!
+  data: EducationUpdateInput!
+}
+
+input EducationCreateInput {
+  title: String
+  date: String
+  location: String
+  profile: ProfileRelateToOneForCreateInput
+}
+
+type Certificate {
+  id: ID!
+  title: String
+  issuer: String
+  date: String
+  imageUrl: String
+  link: String
+  profile: Profile
+}
+
+input CertificateWhereUniqueInput {
+  id: ID
+}
+
+input CertificateWhereInput {
+  AND: [CertificateWhereInput!]
+  OR: [CertificateWhereInput!]
+  NOT: [CertificateWhereInput!]
+  id: IDFilter
+  title: StringFilter
+  issuer: StringFilter
+  date: StringFilter
+  imageUrl: StringFilter
+  link: StringFilter
+  profile: ProfileWhereInput
+}
+
+input CertificateOrderByInput {
+  id: OrderDirection
+  title: OrderDirection
+  issuer: OrderDirection
+  date: OrderDirection
+  imageUrl: OrderDirection
+  link: OrderDirection
+}
+
+input CertificateUpdateInput {
+  title: String
+  issuer: String
+  date: String
+  imageUrl: String
+  link: String
+  profile: ProfileRelateToOneForUpdateInput
+}
+
+input CertificateUpdateArgs {
+  where: CertificateWhereUniqueInput!
+  data: CertificateUpdateInput!
+}
+
+input CertificateCreateInput {
+  title: String
+  issuer: String
+  date: String
+  imageUrl: String
+  link: String
+  profile: ProfileRelateToOneForCreateInput
+}
+
+type Article {
+  id: ID!
+  title: String
+  excerpt: String
+  description: String
+  author: String
+  readTime: String
+  imageUrl: String
+  link: String
+  profile: Profile
+}
+
+input ArticleWhereUniqueInput {
+  id: ID
+}
+
+input ArticleWhereInput {
+  AND: [ArticleWhereInput!]
+  OR: [ArticleWhereInput!]
+  NOT: [ArticleWhereInput!]
+  id: IDFilter
+  title: StringFilter
+  excerpt: StringFilter
+  description: StringFilter
+  author: StringFilter
+  readTime: StringFilter
+  imageUrl: StringFilter
+  link: StringFilter
+  profile: ProfileWhereInput
+}
+
+input ArticleOrderByInput {
+  id: OrderDirection
+  title: OrderDirection
+  excerpt: OrderDirection
+  description: OrderDirection
+  author: OrderDirection
+  readTime: OrderDirection
+  imageUrl: OrderDirection
+  link: OrderDirection
+}
+
+input ArticleUpdateInput {
+  title: String
+  excerpt: String
+  description: String
+  author: String
+  readTime: String
+  imageUrl: String
+  link: String
+  profile: ProfileRelateToOneForUpdateInput
+}
+
+input ArticleUpdateArgs {
+  where: ArticleWhereUniqueInput!
+  data: ArticleUpdateInput!
+}
+
+input ArticleCreateInput {
+  title: String
+  excerpt: String
+  description: String
+  author: String
+  readTime: String
+  imageUrl: String
+  link: String
+  profile: ProfileRelateToOneForCreateInput
+}
+
+type HireMe {
+  id: ID!
+  title: String
+  link: String
+  profile: Profile
+}
+
+input HireMeWhereUniqueInput {
+  id: ID
+}
+
+input HireMeWhereInput {
+  AND: [HireMeWhereInput!]
+  OR: [HireMeWhereInput!]
+  NOT: [HireMeWhereInput!]
+  id: IDFilter
+  title: StringFilter
+  link: StringFilter
+  profile: ProfileWhereInput
+}
+
+input HireMeOrderByInput {
+  id: OrderDirection
+  title: OrderDirection
+  link: OrderDirection
+}
+
+input HireMeUpdateInput {
+  title: String
+  link: String
+  profile: ProfileRelateToOneForUpdateInput
+}
+
+input HireMeUpdateArgs {
+  where: HireMeWhereUniqueInput!
+  data: HireMeUpdateInput!
+}
+
+input HireMeCreateInput {
+  title: String
+  link: String
+  profile: ProfileRelateToOneForCreateInput
+}
+
+type Service {
+  id: ID!
+  category: String
+  iconFont: String
+  descriptions: String
+  profile: Profile
+}
+
+input ServiceWhereUniqueInput {
+  id: ID
+}
+
+input ServiceWhereInput {
+  AND: [ServiceWhereInput!]
+  OR: [ServiceWhereInput!]
+  NOT: [ServiceWhereInput!]
+  id: IDFilter
+  category: StringFilter
+  iconFont: StringFilter
+  descriptions: StringFilter
+  profile: ProfileWhereInput
+}
+
+input ServiceOrderByInput {
+  id: OrderDirection
+  category: OrderDirection
+  iconFont: OrderDirection
+  descriptions: OrderDirection
+}
+
+input ServiceUpdateInput {
+  category: String
+  iconFont: String
+  descriptions: String
+  profile: ProfileRelateToOneForUpdateInput
+}
+
+input ServiceUpdateArgs {
+  where: ServiceWhereUniqueInput!
+  data: ServiceUpdateInput!
+}
+
+input ServiceCreateInput {
+  category: String
+  iconFont: String
+  descriptions: String
+  profile: ProfileRelateToOneForCreateInput
+}
+
+type ProjectCategory {
+  id: ID!
+  category: String
+  class: String
+  project(where: ProjectWhereInput! = {}, orderBy: [ProjectOrderByInput!]! = [], take: Int, skip: Int! = 0, cursor: ProjectWhereUniqueInput): [Project!]
+  projectCount(where: ProjectWhereInput! = {}): Int
+  profile: Profile
+}
+
+input ProjectCategoryWhereUniqueInput {
+  id: ID
+}
+
+input ProjectCategoryWhereInput {
+  AND: [ProjectCategoryWhereInput!]
+  OR: [ProjectCategoryWhereInput!]
+  NOT: [ProjectCategoryWhereInput!]
+  id: IDFilter
+  category: StringFilter
+  class: StringFilter
+  project: ProjectManyRelationFilter
+  profile: ProfileWhereInput
+}
+
+input ProjectCategoryOrderByInput {
+  id: OrderDirection
+  category: OrderDirection
+  class: OrderDirection
+}
+
+input ProjectCategoryUpdateInput {
+  category: String
+  class: String
+  project: ProjectRelateToManyForUpdateInput
+  profile: ProfileRelateToOneForUpdateInput
+}
+
+input ProjectCategoryUpdateArgs {
+  where: ProjectCategoryWhereUniqueInput!
+  data: ProjectCategoryUpdateInput!
+}
+
+input ProjectCategoryCreateInput {
+  category: String
+  class: String
+  project: ProjectRelateToManyForCreateInput
+  profile: ProfileRelateToOneForCreateInput
+}
+
+type Project {
+  id: ID!
+  class: ProjectCategory
+  placeHolder: String
+  src: String
+  alt: String
+  url: String
+  profile: Profile
+}
+
+input ProjectWhereUniqueInput {
+  id: ID
+}
+
+input ProjectWhereInput {
+  AND: [ProjectWhereInput!]
+  OR: [ProjectWhereInput!]
+  NOT: [ProjectWhereInput!]
+  id: IDFilter
+  class: ProjectCategoryWhereInput
+  placeHolder: StringFilter
+  src: StringFilter
+  alt: StringFilter
+  url: StringFilter
+  profile: ProfileWhereInput
+}
+
+input ProjectOrderByInput {
+  id: OrderDirection
+  placeHolder: OrderDirection
+  src: OrderDirection
+  alt: OrderDirection
+  url: OrderDirection
+}
+
+input ProjectUpdateInput {
+  class: ProjectCategoryRelateToOneForUpdateInput
+  placeHolder: String
+  src: String
+  alt: String
+  url: String
+  profile: ProfileRelateToOneForUpdateInput
+}
+
+input ProjectCategoryRelateToOneForUpdateInput {
+  create: ProjectCategoryCreateInput
+  connect: ProjectCategoryWhereUniqueInput
+  disconnect: Boolean
+}
+
+input ProjectUpdateArgs {
+  where: ProjectWhereUniqueInput!
+  data: ProjectUpdateInput!
+}
+
+input ProjectCreateInput {
+  class: ProjectCategoryRelateToOneForCreateInput
+  placeHolder: String
+  src: String
+  alt: String
+  url: String
+  profile: ProfileRelateToOneForCreateInput
+}
+
+input ProjectCategoryRelateToOneForCreateInput {
+  create: ProjectCategoryCreateInput
+  connect: ProjectCategoryWhereUniqueInput
+}
+
+type SocialLink {
+  id: ID!
+  name: String
+  url: String
+  iconName: String
+  ariaLabel: String
+  profile: Profile
+}
+
+input SocialLinkWhereUniqueInput {
+  id: ID
+}
+
+input SocialLinkWhereInput {
+  AND: [SocialLinkWhereInput!]
+  OR: [SocialLinkWhereInput!]
+  NOT: [SocialLinkWhereInput!]
+  id: IDFilter
+  name: StringFilter
+  url: StringFilter
+  iconName: StringFilter
+  ariaLabel: StringFilter
+  profile: ProfileWhereInput
+}
+
+input SocialLinkOrderByInput {
+  id: OrderDirection
+  name: OrderDirection
+  url: OrderDirection
+  iconName: OrderDirection
+  ariaLabel: OrderDirection
+}
+
+input SocialLinkUpdateInput {
+  name: String
+  url: String
+  iconName: String
+  ariaLabel: String
+  profile: ProfileRelateToOneForUpdateInput
+}
+
+input SocialLinkUpdateArgs {
+  where: SocialLinkWhereUniqueInput!
+  data: SocialLinkUpdateInput!
+}
+
+input SocialLinkCreateInput {
+  name: String
+  url: String
+  iconName: String
+  ariaLabel: String
+  profile: ProfileRelateToOneForCreateInput
+}
+
+type PersonalInfo {
+  id: ID!
+  title: String
+  profile: Profile
+}
+
+input PersonalInfoWhereUniqueInput {
+  id: ID
+}
+
+input PersonalInfoWhereInput {
+  AND: [PersonalInfoWhereInput!]
+  OR: [PersonalInfoWhereInput!]
+  NOT: [PersonalInfoWhereInput!]
+  id: IDFilter
+  title: StringFilter
+  profile: ProfileWhereInput
+}
+
+input PersonalInfoOrderByInput {
+  id: OrderDirection
+  title: OrderDirection
+}
+
+input PersonalInfoUpdateInput {
+  title: String
+  profile: ProfileRelateToOneForUpdateInput
+}
+
+input PersonalInfoUpdateArgs {
+  where: PersonalInfoWhereUniqueInput!
+  data: PersonalInfoUpdateInput!
+}
+
+input PersonalInfoCreateInput {
+  title: String
+  profile: ProfileRelateToOneForCreateInput
+}
+
+type FreelanceLink {
+  id: ID!
+  name: String
+  url: String
+  profile: Profile
+}
+
+input FreelanceLinkWhereUniqueInput {
+  id: ID
+}
+
+input FreelanceLinkWhereInput {
+  AND: [FreelanceLinkWhereInput!]
+  OR: [FreelanceLinkWhereInput!]
+  NOT: [FreelanceLinkWhereInput!]
+  id: IDFilter
+  name: StringFilter
+  url: StringFilter
+  profile: ProfileWhereInput
+}
+
+input FreelanceLinkOrderByInput {
+  id: OrderDirection
+  name: OrderDirection
+  url: OrderDirection
+}
+
+input FreelanceLinkUpdateInput {
+  name: String
+  url: String
+  profile: ProfileRelateToOneForUpdateInput
+}
+
+input FreelanceLinkUpdateArgs {
+  where: FreelanceLinkWhereUniqueInput!
+  data: FreelanceLinkUpdateInput!
+}
+
+input FreelanceLinkCreateInput {
+  name: String
+  url: String
+  profile: ProfileRelateToOneForCreateInput
+}
+
+type ContactInfo {
+  id: ID!
+  type: String
+  iconName: String
+  content: String
+  url: String
+  isLink: Boolean
+  className: String
+  profile: Profile
+}
+
+input ContactInfoWhereUniqueInput {
+  id: ID
+}
+
+input ContactInfoWhereInput {
+  AND: [ContactInfoWhereInput!]
+  OR: [ContactInfoWhereInput!]
+  NOT: [ContactInfoWhereInput!]
+  id: IDFilter
+  type: StringFilter
+  iconName: StringFilter
+  content: StringFilter
+  url: StringFilter
+  isLink: BooleanFilter
+  className: StringFilter
+  profile: ProfileWhereInput
+}
+
+input BooleanFilter {
+  equals: Boolean
+  not: BooleanFilter
+}
+
+input ContactInfoOrderByInput {
+  id: OrderDirection
+  type: OrderDirection
+  iconName: OrderDirection
+  content: OrderDirection
+  url: OrderDirection
+  isLink: OrderDirection
+  className: OrderDirection
+}
+
+input ContactInfoUpdateInput {
+  type: String
+  iconName: String
+  content: String
+  url: String
+  isLink: Boolean
+  className: String
+  profile: ProfileRelateToOneForUpdateInput
+}
+
+input ContactInfoUpdateArgs {
+  where: ContactInfoWhereUniqueInput!
+  data: ContactInfoUpdateInput!
+}
+
+input ContactInfoCreateInput {
+  type: String
+  iconName: String
+  content: String
+  url: String
+  isLink: Boolean
+  className: String
+  profile: ProfileRelateToOneForCreateInput
+}
+
+type Copyright {
+  id: ID!
+  year: Int
+  website: String
+  url: String
+  profile: Profile
+}
+
+input CopyrightWhereUniqueInput {
+  id: ID
+  profile: ProfileWhereUniqueInput
+}
+
+input CopyrightWhereInput {
+  AND: [CopyrightWhereInput!]
+  OR: [CopyrightWhereInput!]
+  NOT: [CopyrightWhereInput!]
+  id: IDFilter
+  year: IntFilter
+  website: StringFilter
+  url: StringFilter
+  profile: ProfileWhereInput
+}
+
+input IntFilter {
+  equals: Int
+  in: [Int!]
+  notIn: [Int!]
+  lt: Int
+  lte: Int
+  gt: Int
+  gte: Int
+  not: IntFilter
+}
+
+input CopyrightOrderByInput {
+  id: OrderDirection
+  year: OrderDirection
+  website: OrderDirection
+  url: OrderDirection
+}
+
+input CopyrightUpdateInput {
+  year: Int
+  website: String
+  url: String
+  profile: ProfileRelateToOneForUpdateInput
+}
+
+input CopyrightUpdateArgs {
+  where: CopyrightWhereUniqueInput!
+  data: CopyrightUpdateInput!
+}
+
+input CopyrightCreateInput {
+  year: Int
+  website: String
+  url: String
+  profile: ProfileRelateToOneForCreateInput
+}
+
 """
 The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf).
 """
@@ -286,6 +1489,96 @@ type Mutation {
   updateTags(data: [TagUpdateArgs!]!): [Tag]
   deleteTag(where: TagWhereUniqueInput!): Tag
   deleteTags(where: [TagWhereUniqueInput!]!): [Tag]
+  createProfile(data: ProfileCreateInput!): Profile
+  createProfiles(data: [ProfileCreateInput!]!): [Profile]
+  updateProfile(where: ProfileWhereUniqueInput!, data: ProfileUpdateInput!): Profile
+  updateProfiles(data: [ProfileUpdateArgs!]!): [Profile]
+  deleteProfile(where: ProfileWhereUniqueInput!): Profile
+  deleteProfiles(where: [ProfileWhereUniqueInput!]!): [Profile]
+  createSkill(data: SkillCreateInput!): Skill
+  createSkills(data: [SkillCreateInput!]!): [Skill]
+  updateSkill(where: SkillWhereUniqueInput!, data: SkillUpdateInput!): Skill
+  updateSkills(data: [SkillUpdateArgs!]!): [Skill]
+  deleteSkill(where: SkillWhereUniqueInput!): Skill
+  deleteSkills(where: [SkillWhereUniqueInput!]!): [Skill]
+  createExperience(data: ExperienceCreateInput!): Experience
+  createExperiences(data: [ExperienceCreateInput!]!): [Experience]
+  updateExperience(where: ExperienceWhereUniqueInput!, data: ExperienceUpdateInput!): Experience
+  updateExperiences(data: [ExperienceUpdateArgs!]!): [Experience]
+  deleteExperience(where: ExperienceWhereUniqueInput!): Experience
+  deleteExperiences(where: [ExperienceWhereUniqueInput!]!): [Experience]
+  createEducation(data: EducationCreateInput!): Education
+  createEducations(data: [EducationCreateInput!]!): [Education]
+  updateEducation(where: EducationWhereUniqueInput!, data: EducationUpdateInput!): Education
+  updateEducations(data: [EducationUpdateArgs!]!): [Education]
+  deleteEducation(where: EducationWhereUniqueInput!): Education
+  deleteEducations(where: [EducationWhereUniqueInput!]!): [Education]
+  createCertificate(data: CertificateCreateInput!): Certificate
+  createCertificates(data: [CertificateCreateInput!]!): [Certificate]
+  updateCertificate(where: CertificateWhereUniqueInput!, data: CertificateUpdateInput!): Certificate
+  updateCertificates(data: [CertificateUpdateArgs!]!): [Certificate]
+  deleteCertificate(where: CertificateWhereUniqueInput!): Certificate
+  deleteCertificates(where: [CertificateWhereUniqueInput!]!): [Certificate]
+  createArticle(data: ArticleCreateInput!): Article
+  createArticles(data: [ArticleCreateInput!]!): [Article]
+  updateArticle(where: ArticleWhereUniqueInput!, data: ArticleUpdateInput!): Article
+  updateArticles(data: [ArticleUpdateArgs!]!): [Article]
+  deleteArticle(where: ArticleWhereUniqueInput!): Article
+  deleteArticles(where: [ArticleWhereUniqueInput!]!): [Article]
+  createHireMe(data: HireMeCreateInput!): HireMe
+  createHireMes(data: [HireMeCreateInput!]!): [HireMe]
+  updateHireMe(where: HireMeWhereUniqueInput!, data: HireMeUpdateInput!): HireMe
+  updateHireMes(data: [HireMeUpdateArgs!]!): [HireMe]
+  deleteHireMe(where: HireMeWhereUniqueInput!): HireMe
+  deleteHireMes(where: [HireMeWhereUniqueInput!]!): [HireMe]
+  createService(data: ServiceCreateInput!): Service
+  createServices(data: [ServiceCreateInput!]!): [Service]
+  updateService(where: ServiceWhereUniqueInput!, data: ServiceUpdateInput!): Service
+  updateServices(data: [ServiceUpdateArgs!]!): [Service]
+  deleteService(where: ServiceWhereUniqueInput!): Service
+  deleteServices(where: [ServiceWhereUniqueInput!]!): [Service]
+  createProjectCategory(data: ProjectCategoryCreateInput!): ProjectCategory
+  createProjectCategories(data: [ProjectCategoryCreateInput!]!): [ProjectCategory]
+  updateProjectCategory(where: ProjectCategoryWhereUniqueInput!, data: ProjectCategoryUpdateInput!): ProjectCategory
+  updateProjectCategories(data: [ProjectCategoryUpdateArgs!]!): [ProjectCategory]
+  deleteProjectCategory(where: ProjectCategoryWhereUniqueInput!): ProjectCategory
+  deleteProjectCategories(where: [ProjectCategoryWhereUniqueInput!]!): [ProjectCategory]
+  createProject(data: ProjectCreateInput!): Project
+  createProjects(data: [ProjectCreateInput!]!): [Project]
+  updateProject(where: ProjectWhereUniqueInput!, data: ProjectUpdateInput!): Project
+  updateProjects(data: [ProjectUpdateArgs!]!): [Project]
+  deleteProject(where: ProjectWhereUniqueInput!): Project
+  deleteProjects(where: [ProjectWhereUniqueInput!]!): [Project]
+  createSocialLink(data: SocialLinkCreateInput!): SocialLink
+  createSocialLinks(data: [SocialLinkCreateInput!]!): [SocialLink]
+  updateSocialLink(where: SocialLinkWhereUniqueInput!, data: SocialLinkUpdateInput!): SocialLink
+  updateSocialLinks(data: [SocialLinkUpdateArgs!]!): [SocialLink]
+  deleteSocialLink(where: SocialLinkWhereUniqueInput!): SocialLink
+  deleteSocialLinks(where: [SocialLinkWhereUniqueInput!]!): [SocialLink]
+  createPersonalInfo(data: PersonalInfoCreateInput!): PersonalInfo
+  createPersonalInfos(data: [PersonalInfoCreateInput!]!): [PersonalInfo]
+  updatePersonalInfo(where: PersonalInfoWhereUniqueInput!, data: PersonalInfoUpdateInput!): PersonalInfo
+  updatePersonalInfos(data: [PersonalInfoUpdateArgs!]!): [PersonalInfo]
+  deletePersonalInfo(where: PersonalInfoWhereUniqueInput!): PersonalInfo
+  deletePersonalInfos(where: [PersonalInfoWhereUniqueInput!]!): [PersonalInfo]
+  createFreelanceLink(data: FreelanceLinkCreateInput!): FreelanceLink
+  createFreelanceLinks(data: [FreelanceLinkCreateInput!]!): [FreelanceLink]
+  updateFreelanceLink(where: FreelanceLinkWhereUniqueInput!, data: FreelanceLinkUpdateInput!): FreelanceLink
+  updateFreelanceLinks(data: [FreelanceLinkUpdateArgs!]!): [FreelanceLink]
+  deleteFreelanceLink(where: FreelanceLinkWhereUniqueInput!): FreelanceLink
+  deleteFreelanceLinks(where: [FreelanceLinkWhereUniqueInput!]!): [FreelanceLink]
+  createContactInfo(data: ContactInfoCreateInput!): ContactInfo
+  createContactInfos(data: [ContactInfoCreateInput!]!): [ContactInfo]
+  updateContactInfo(where: ContactInfoWhereUniqueInput!, data: ContactInfoUpdateInput!): ContactInfo
+  updateContactInfos(data: [ContactInfoUpdateArgs!]!): [ContactInfo]
+  deleteContactInfo(where: ContactInfoWhereUniqueInput!): ContactInfo
+  deleteContactInfos(where: [ContactInfoWhereUniqueInput!]!): [ContactInfo]
+  createCopyright(data: CopyrightCreateInput!): Copyright
+  createCopyrights(data: [CopyrightCreateInput!]!): [Copyright]
+  updateCopyright(where: CopyrightWhereUniqueInput!, data: CopyrightUpdateInput!): Copyright
+  updateCopyrights(data: [CopyrightUpdateArgs!]!): [Copyright]
+  deleteCopyright(where: CopyrightWhereUniqueInput!): Copyright
+  deleteCopyrights(where: [CopyrightWhereUniqueInput!]!): [Copyright]
   endSession: Boolean!
   authenticateUserWithPassword(email: String!, password: String!): UserAuthenticationWithPasswordResult
 }
@@ -311,6 +1604,51 @@ type Query {
   tag(where: TagWhereUniqueInput!): Tag
   tags(where: TagWhereInput! = {}, orderBy: [TagOrderByInput!]! = [], take: Int, skip: Int! = 0, cursor: TagWhereUniqueInput): [Tag!]
   tagsCount(where: TagWhereInput! = {}): Int
+  profile(where: ProfileWhereUniqueInput!): Profile
+  profiles(where: ProfileWhereInput! = {}, orderBy: [ProfileOrderByInput!]! = [], take: Int, skip: Int! = 0, cursor: ProfileWhereUniqueInput): [Profile!]
+  profilesCount(where: ProfileWhereInput! = {}): Int
+  skill(where: SkillWhereUniqueInput!): Skill
+  skills(where: SkillWhereInput! = {}, orderBy: [SkillOrderByInput!]! = [], take: Int, skip: Int! = 0, cursor: SkillWhereUniqueInput): [Skill!]
+  skillsCount(where: SkillWhereInput! = {}): Int
+  experience(where: ExperienceWhereUniqueInput!): Experience
+  experiences(where: ExperienceWhereInput! = {}, orderBy: [ExperienceOrderByInput!]! = [], take: Int, skip: Int! = 0, cursor: ExperienceWhereUniqueInput): [Experience!]
+  experiencesCount(where: ExperienceWhereInput! = {}): Int
+  education(where: EducationWhereUniqueInput!): Education
+  educations(where: EducationWhereInput! = {}, orderBy: [EducationOrderByInput!]! = [], take: Int, skip: Int! = 0, cursor: EducationWhereUniqueInput): [Education!]
+  educationsCount(where: EducationWhereInput! = {}): Int
+  certificate(where: CertificateWhereUniqueInput!): Certificate
+  certificates(where: CertificateWhereInput! = {}, orderBy: [CertificateOrderByInput!]! = [], take: Int, skip: Int! = 0, cursor: CertificateWhereUniqueInput): [Certificate!]
+  certificatesCount(where: CertificateWhereInput! = {}): Int
+  article(where: ArticleWhereUniqueInput!): Article
+  articles(where: ArticleWhereInput! = {}, orderBy: [ArticleOrderByInput!]! = [], take: Int, skip: Int! = 0, cursor: ArticleWhereUniqueInput): [Article!]
+  articlesCount(where: ArticleWhereInput! = {}): Int
+  hireMe(where: HireMeWhereUniqueInput!): HireMe
+  hireMes(where: HireMeWhereInput! = {}, orderBy: [HireMeOrderByInput!]! = [], take: Int, skip: Int! = 0, cursor: HireMeWhereUniqueInput): [HireMe!]
+  hireMesCount(where: HireMeWhereInput! = {}): Int
+  service(where: ServiceWhereUniqueInput!): Service
+  services(where: ServiceWhereInput! = {}, orderBy: [ServiceOrderByInput!]! = [], take: Int, skip: Int! = 0, cursor: ServiceWhereUniqueInput): [Service!]
+  servicesCount(where: ServiceWhereInput! = {}): Int
+  projectCategory(where: ProjectCategoryWhereUniqueInput!): ProjectCategory
+  projectCategories(where: ProjectCategoryWhereInput! = {}, orderBy: [ProjectCategoryOrderByInput!]! = [], take: Int, skip: Int! = 0, cursor: ProjectCategoryWhereUniqueInput): [ProjectCategory!]
+  projectCategoriesCount(where: ProjectCategoryWhereInput! = {}): Int
+  project(where: ProjectWhereUniqueInput!): Project
+  projects(where: ProjectWhereInput! = {}, orderBy: [ProjectOrderByInput!]! = [], take: Int, skip: Int! = 0, cursor: ProjectWhereUniqueInput): [Project!]
+  projectsCount(where: ProjectWhereInput! = {}): Int
+  socialLink(where: SocialLinkWhereUniqueInput!): SocialLink
+  socialLinks(where: SocialLinkWhereInput! = {}, orderBy: [SocialLinkOrderByInput!]! = [], take: Int, skip: Int! = 0, cursor: SocialLinkWhereUniqueInput): [SocialLink!]
+  socialLinksCount(where: SocialLinkWhereInput! = {}): Int
+  personalInfo(where: PersonalInfoWhereUniqueInput!): PersonalInfo
+  personalInfos(where: PersonalInfoWhereInput! = {}, orderBy: [PersonalInfoOrderByInput!]! = [], take: Int, skip: Int! = 0, cursor: PersonalInfoWhereUniqueInput): [PersonalInfo!]
+  personalInfosCount(where: PersonalInfoWhereInput! = {}): Int
+  freelanceLink(where: FreelanceLinkWhereUniqueInput!): FreelanceLink
+  freelanceLinks(where: FreelanceLinkWhereInput! = {}, orderBy: [FreelanceLinkOrderByInput!]! = [], take: Int, skip: Int! = 0, cursor: FreelanceLinkWhereUniqueInput): [FreelanceLink!]
+  freelanceLinksCount(where: FreelanceLinkWhereInput! = {}): Int
+  contactInfo(where: ContactInfoWhereUniqueInput!): ContactInfo
+  contactInfos(where: ContactInfoWhereInput! = {}, orderBy: [ContactInfoOrderByInput!]! = [], take: Int, skip: Int! = 0, cursor: ContactInfoWhereUniqueInput): [ContactInfo!]
+  contactInfosCount(where: ContactInfoWhereInput! = {}): Int
+  copyright(where: CopyrightWhereUniqueInput!): Copyright
+  copyrights(where: CopyrightWhereInput! = {}, orderBy: [CopyrightOrderByInput!]! = [], take: Int, skip: Int! = 0, cursor: CopyrightWhereUniqueInput): [Copyright!]
+  copyrightsCount(where: CopyrightWhereInput! = {}): Int
   keystone: KeystoneMeta!
   authenticatedItem: User
 }
