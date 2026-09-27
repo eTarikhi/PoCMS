@@ -44,6 +44,10 @@ export default withAuth(
         log: ['error'],
       }),
     },
+
+    server: {
+      port: Number(process.env.PORT || 3000),
+    },
     async onConnect(context) {
       // this creates an initial user if none exist so you can log in for development
       // WARNING: do not use this in production
