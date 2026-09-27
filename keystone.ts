@@ -16,37 +16,54 @@ import { lists } from './schema.ts'
 // when you write your list-level access control functions, as they typically rely on session data
 import { withAuth, session } from './auth.ts'
 
+const databaseUrl = process.env.POSTGRES_URL
+
+if (!databaseUrl) {
+  throw new Error('POSTGRES_URL is required')
+}
+
 export default withAuth(
   config({
+    // db: {
+    //   // we're using sqlite for the fastest startup experience
+    //   //   for more information on what database might be appropriate for you
+    //   //   see https://keystonejs.com/docs/guides/choosing-a-database#title
+    //   provider: 'postgresql',
+    //   prismaClientOptions: () => ({
+    //     adapter: new PrismaPg({ connectionString: process.env.POSTGRES_URL || 'file:./keystone.db' }),
+    //     log: ['query'],
+    //   }),
     db: {
-      // we're using sqlite for the fastest startup experience
-      //   for more information on what database might be appropriate for you
-      //   see https://keystonejs.com/docs/guides/choosing-a-database#title
       provider: 'postgresql',
+
       prismaClientOptions: () => ({
-        adapter: new PrismaPg({ connectionString: process.env.POSTGRES_URL || 'file:./keystone.db' }),
-        log: ['query'],
+        adapter: new PrismaPg({
+          connectionString: databaseUrl,
+        }),
+
+        log: ['error'],
       }),
-      async onConnect(context) {
-        // this creates an initial user if none exist so you can log in for development
-        // WARNING: do not use this in production
-        ; (async () => {
-          const sudoContext = context.sudo()
-          if ((await sudoContext.db.User.count()) !== 0) return
-
-          const getRandomValues = require('get-random-values')
-          function toHex(bytes) { return Array.from(bytes, b => b.toString(16).padStart(2, '0')).join('') }
-          const password = toHex(crypto.getRandomValues(new Uint8Array(16)))
-          //  console.log(`Generated random password: ${password}`)
-
-          // const password = crypto.getRandomValues(new Uint8Array(16)).toHex()
-          await sudoContext.db.User.createOne({
-            data: { name: 'admin', email: 'admin@example.com', password },
-          })
-          console.log(`Created initial user: admin@example.com / ${password}`)
-        })().catch(error => console.error('Failed to create initial user:', error))
-      },
     },
+    async onConnect(context) {
+      // this creates an initial user if none exist so you can log in for development
+      // WARNING: do not use this in production
+      ; (async () => {
+        const sudoContext = context.sudo()
+        if ((await sudoContext.db.User.count()) !== 0) return
+
+        const getRandomValues = require('get-random-values')
+        function toHex(bytes) { return Array.from(bytes, b => b.toString(16).padStart(2, '0')).join('') }
+        const password = toHex(crypto.getRandomValues(new Uint8Array(16)))
+        //  console.log(`Generated random password: ${password}`)
+
+        // const password = crypto.getRandomValues(new Uint8Array(16)).toHex()
+        await sudoContext.db.User.createOne({
+          data: { name: 'admin', email: 'admin@example.com', password },
+        })
+        console.log(`Created initial user: admin@example.com / ${password}`)
+      })().catch(error => console.error('Failed to create initial user:', error))
+    },
+
     apolloConfig: {
       plugins: [
         {
@@ -67,6 +84,16 @@ export default withAuth(
     lists,
     session,
     ui: {
+      // isAccessAllowed:({session}) => session.allowAdminUI,
+      // getAdditionalFiles: [
+      //   async () => [
+      //     {
+      //       mode: 'copy',
+      //       inputPath: './keystone-next-config.js',
+      //       outputPath: 'next.config.js',
+      //     },
+      //   ],
+      // ],
       pageMenu: [
         {
           label: 'Dashboard',
